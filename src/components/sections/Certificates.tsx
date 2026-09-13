@@ -39,7 +39,7 @@ export function Certificates() {
             Chứng Chỉ Công Nghệ & Khảo Thí Quốc Tế
           </h2>
           <p className="text-zinc-400 text-sm sm:text-base font-sans">
-            Tập hợp 11 chứng chỉ chuyên môn được cấp bởi Google, Cisco Networking Academy, University of Michigan và OpenEDG. Bấm vào từng chứng chỉ để phóng to xem ảnh sắc nét hoặc mở file PDF gốc.
+            Tập hợp 12 chứng chỉ chuyên môn được cấp bởi IBM, Google, Cisco Networking Academy, University of Michigan và OpenEDG. Bấm vào từng chứng chỉ để phóng to xem ảnh sắc nét hoặc mở file PDF gốc.
           </p>
         </div>
 
@@ -219,6 +219,17 @@ export function Certificates() {
                 >
                   <Download className="w-4 h-4 text-emerald-400" />
                   <span>Tải Về PDF</span>
+                </a>
+              )}
+              {selectedCert.verifyUrl && (
+                <a
+                  href={selectedCert.verifyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-700 text-zinc-200 hover:text-white text-xs font-mono font-medium transition-colors"
+                >
+                  <ExternalLink className="w-4 h-4 text-cyan-400" />
+                  <span>Xác Thực Trực Tuyến</span>
                 </a>
               )}
             </div>

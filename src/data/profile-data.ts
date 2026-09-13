@@ -99,10 +99,10 @@ export const metricsData: MetricItem[] = [
   },
   {
     id: "certs",
-    value: "11",
+    value: "12",
     suffix: " Chứng chỉ",
     label: "Chứng chỉ quốc tế đã xác thực",
-    sublabel: "Google, Cisco & University of Michigan",
+    sublabel: "IBM, Google, Cisco & UMich",
     highlight: "Verified Credentials",
     accent: "indigo",
   },
@@ -256,8 +256,8 @@ export const journeyStages: JourneyStage[] = [
       "Viết những dòng code đầu tiên với C/C++ và Python, đặt nền móng tư duy giải thuật.",
     ],
     skills: ["Phần cứng máy tính", "Windows/Linux", "Nhập môn C/Python"],
-    image: "/images/about/hoc tap1.jpg",
-    imageAlt: "Ảnh chụp thật học tập thực tế",
+    image: "/images/about/school-lab.jpg",
+    imageAlt: "Ảnh chụp thật không gian học tập và máy tính",
     imageCaption: "Khoảnh khắc tự học lập trình, cấu trúc máy tính & tư duy giải thuật",
   },
   {
@@ -280,7 +280,7 @@ export const journeyStages: JourneyStage[] = [
       "TypeScript",
       "Quản trị mạng",
     ],
-    image: "/images/about/school-lab.jpg",
+    image: "/images/about/hoc tap1.jpg",
     imageAlt: "Ảnh chụp thật phòng máy lab HUTECH",
     imageCaption: "Phòng máy lab máy tính & không gian nghiên cứu giải thuật HUTECH",
   },
@@ -465,6 +465,25 @@ export const projectsData: ProjectItem[] = [
 ];
 
 export const certificatesData: CertificateItem[] = [
+  {
+    id: "ibm-software-engineering",
+    title: "Introduction to Software Engineering",
+    issuer: "IBM (Coursera)",
+    issuerLogoText: "IBM",
+    issueDate: "2026",
+    credentialId: "3NYGIOC1SFHW",
+    verifyUrl: "https://coursera.org/verify/3NYGIOC1SFHW",
+    imageUrl: "/images/chung chi/software-engineering.png",
+    pdfUrl: "/images/chung chi/Software Engineering.pdf",
+    skills: [
+      "Software Development Lifecycle (SDLC)",
+      "Agile & Scrum",
+      "Software Architecture",
+      "Clean Code",
+      "DevOps & CI/CD",
+    ],
+    highlight: true,
+  },
   {
     id: "the-bits-and-bytes",
     title: "The Bits and Bytes of Computer Networking",
