@@ -15,6 +15,12 @@ import {
 
 export function Certificates() {
   const [selectedCert, setSelectedCert] = useState<CertificateItem | null>(null);
+  const [modalImageError, setModalImageError] = useState(false);
+
+  // Reset modal image error when selecting a new certificate
+  useEffect(() => {
+    setModalImageError(false);
+  }, [selectedCert]);
 
   // Close modal on Escape key
   useEffect(() => {
@@ -67,6 +73,7 @@ export function Certificates() {
                       src={cert.imageUrl}
                       alt={cert.title}
                       fill
+                      unoptimized
                       className="object-contain p-1.5 group-hover:scale-105 transition-transform duration-300"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 380px"
                     />
@@ -167,15 +174,27 @@ export function Certificates() {
 
             {/* Large Certificate Preview Image */}
             {selectedCert.imageUrl && (
-              <div className="relative w-full aspect-[16/11] max-h-[460px] rounded-xl bg-zinc-900 border border-zinc-800 overflow-hidden shadow-2xl">
-                <Image
-                  src={selectedCert.imageUrl}
-                  alt={selectedCert.title}
-                  fill
-                  priority
-                  className="object-contain p-2"
-                  sizes="(max-width: 1024px) 100vw, 768px"
-                />
+              <div className="relative w-full aspect-[16/11] max-h-[460px] rounded-xl bg-zinc-900 border border-zinc-800 overflow-hidden shadow-2xl flex items-center justify-center">
+                {modalImageError ? (
+                  <div className="text-center p-8 space-y-2">
+                    <ShieldCheck className="w-10 h-10 text-emerald-400/60 mx-auto" />
+                    <p className="text-sm font-mono text-zinc-300 font-semibold">{selectedCert.title}</p>
+                    <p className="text-xs text-zinc-400">
+                      Bản xem trước hình ảnh không khả dụng. Bạn có thể mở trực tiếp file PDF gốc qua nút bên dưới.
+                    </p>
+                  </div>
+                ) : (
+                  <Image
+                    src={selectedCert.imageUrl}
+                    alt={selectedCert.title}
+                    fill
+                    priority
+                    unoptimized
+                    onError={() => setModalImageError(true)}
+                    className="object-contain p-2"
+                    sizes="(max-width: 1024px) 100vw, 768px"
+                  />
+                )}
               </div>
             )}
 
