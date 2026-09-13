@@ -1,0 +1,22 @@
+[
+  {
+    "id": "d13769e2-0936-4e0a-95ad-b2c6c5b7004b",
+    "name": "Phan Minh Tuan - HR Director",
+    "email": "tuan.phan@techglobal.com",
+    "message": "Chao Thinh, chung toi dang tuyen vi tri Full-Stack / Software Engineer lam viec tai TP.HCM. Rat mong duoc ket noi va trao doi them ve co hoi hop tac.",
+    "status": "replied",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36",
+    "createdAt": "2026-09-13T07:13:34.599Z"
+  },
+  {
+    "id": "ddf25c61-9751-4661-a810-3966783009f0",
+    "name": "Nguyen Van Doanh Nghiep",
+    "email": "contact@doanhnghiep.vn",
+    "message": "Chao Ky su Truong Thinh, cong ty chung toi muon hop tac phat trien du an Web Next.js va GenAI.",
+    "status": "unread",
+    "ip": "::1",
+    "userAgent": "node",
+    "createdAt": "2026-09-13T07:12:41.259Z"
+  }
+]

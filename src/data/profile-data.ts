@@ -1,0 +1,606 @@
+import {
+  PersonalInfo,
+  TechnicalPillar,
+  MetricItem,
+  SkillCategory,
+  JourneyStage,
+  ExperienceItem,
+  ProjectItem,
+  CertificateItem,
+  ArticleItem,
+} from "@/types/profile";
+
+export const personalInfo: PersonalInfo = {
+  name: "TRẦN MAI TRƯỜNG THỊNH",
+  title: "Software Engineer & Computer Engineer",
+  shortBio:
+    "Kỹ sư phần mềm xuất thân từ nền tảng giải thuật và cơ sở dữ liệu vững chắc. Tôi tập trung vào việc viết mã nguồn sạch, tối ưu hóa hiệu năng ứng dụng và tích hợp các giải pháp trí tuệ nhân tạo vào giải quyết bài toán thực tế. Với tư duy kỹ thuật toàn diện từ mạng máy tính, hệ thống đến phần mềm, tôi hướng đến việc xây dựng các sản phẩm công nghệ có trải nghiệm mượt mà, vận hành ổn định và dễ dàng mở rộng.",
+  about:
+    "Với định hướng chuyên sâu về kỹ thuật phần mềm, tôi đặt trọng tâm vào chất lượng mã nguồn, tư duy giải thuật tối ưu và tính ổn định dài hạn của hệ thống. Từ nền tảng đạt giải thưởng về lập trình giải thuật và xử lý cơ sở dữ liệu, tôi làm chủ quá trình phát triển sản phẩm từ thiết kế logic giao diện, xử lý dữ liệu phức tạp đến tích hợp các mô hình trí tuệ nhân tạo thông minh. Sự am hiểu sâu sắc về kiến trúc mạng và máy tính giúp tôi luôn chủ động trong việc gỡ lỗi, kiểm soát độ trễ và tạo ra những sản phẩm phần mềm chuẩn mực.",
+  location: "Số 2, đường số 6, KP 70, phường An Lạc, Bình Tân, TP.HCM",
+  email: "tranmaitruongthinh2607@gmail.com",
+  phone: "0395243133",
+  github: "https://github.com/tranthinh2607",
+  facebook: "https://facebook.com/tmtthinh204",
+  instagram: "https://www.instagram.com/truongthinh2k04/",
+  x: "https://x.com/TruongThinh2607",
+  linkedin: "https://linkedin.com",
+  avatarUrl: "/images/about/thinh-portrait.jpg",
+  cvUrl: "/images/Tran-Mai-Truong-Thinh-CV.pdf",
+  availability: {
+    status: "available",
+    badgeText: "Sẵn sàng cho cơ hội Software Engineer & Computer Engineer",
+    description:
+      "Đang mở cho các cơ hội Software Engineer, Full-Stack Developer, Computer Engineer hoặc IT Help Desk tại TP. Hồ Chí Minh hoặc hình thức Remote.",
+  },
+  education: {
+    degree: "Cử nhân Công nghệ Thông tin (Dự kiến tốt nghiệp 2026)",
+    school: "HUTECH - Đại học Công nghệ TP.HCM",
+    gpa: "3.45 / 4.0",
+    period: "2022 - Hiện tại",
+    major: "Công Nghệ Thông Tin",
+    honors: "Giải Nhì Olympic Tin học Sinh viên (Chuyên đề Lập trình & Cơ sở dữ liệu) - 2023",
+    achievements: [
+      "Giải Nhì Olympic Tin học Sinh viên (Chuyên đề Lập trình & Cơ sở dữ liệu) - 2023 (Khẳng định tư duy thuật toán, cấu trúc dữ liệu và tối ưu truy vấn cấp thấp).",
+      "Điểm trung bình tích lũy GPA: 3.45 / 4.0 (Xếp loại Giỏi toàn diện chuyên ngành Công nghệ Thông tin HUTECH).",
+      "Thành viên phát triển công nghệ HUTECH & Trưởng nhóm dự án công nghệ sinh viên.",
+    ],
+  },
+};
+
+export const technicalPillars: TechnicalPillar[] = [
+  {
+    icon: "💻",
+    title: "Chất lượng mã nguồn",
+    description:
+      "Viết code tường minh, cấu trúc chặt chẽ, tối ưu hóa thuật toán và kiểm soát độ trễ xử lý.",
+  },
+  {
+    icon: "⚙️",
+    title: "Kỹ thuật phần mềm toàn diện",
+    description:
+      "Làm chủ từ giao diện người dùng, logic xử lý dữ liệu cho đến ứng dụng trí tuệ nhân tạo thực tiễn.",
+  },
+  {
+    icon: "🛡️",
+    title: "Nền tảng hệ thống vững vàng",
+    description:
+      "Nắm chắc nguyên lý mạng, phần cứng máy tính và cơ sở dữ liệu, đảm bảo ứng dụng vận hành an toàn và liên tục.",
+  },
+];
+
+export const metricsData: MetricItem[] = [
+  {
+    id: "gpa",
+    value: "3.45",
+    suffix: " / 4.0",
+    label: "Điểm trung bình GPA",
+    sublabel: "Xếp loại Giỏi ngành CNTT - HUTECH",
+    highlight: "Academic Excellence",
+    accent: "emerald",
+  },
+  {
+    id: "award",
+    value: "Top 2",
+    suffix: " Olympic CS",
+    label: "Giải Nhì Olympic Tin học",
+    sublabel: "Lập trình & Cơ sở dữ liệu (2023)",
+    highlight: "Algorithmic Mindset",
+    accent: "amber",
+  },
+  {
+    id: "apps",
+    value: "4",
+    suffix: " Sản phẩm",
+    label: "Dự án Web, AI & Tiện ích IT",
+    sublabel: "Deploy Vercel & Công cụ tự động hóa",
+    highlight: "Production Ready",
+    accent: "cyan",
+  },
+  {
+    id: "certs",
+    value: "11",
+    suffix: " Chứng chỉ",
+    label: "Chứng chỉ quốc tế đã xác thực",
+    sublabel: "Google, Cisco & University of Michigan",
+    highlight: "Verified Credentials",
+    accent: "indigo",
+  },
+];
+
+export const skillCategories: SkillCategory[] = [
+  {
+    id: "web-dev",
+    category: "Lập Trình Web Hiện Đại",
+    badge: "Web & Frontend",
+    description:
+      "Phát triển ứng dụng Web hiệu năng cao, giao diện chuẩn responsive với Next.js, React 19, TypeScript và RESTful API.",
+    skills: [
+      {
+        name: "Next.js (App Router)",
+        highlight: true,
+        depth: "Thực chiến",
+        tags: ["React Server Components", "Server Actions", "Turbopack", "Routing"],
+      },
+      {
+        name: "React 19 & TypeScript",
+        highlight: true,
+        depth: "Chuyên sâu",
+        tags: ["Custom Hooks", "State Management", "Strict Type Safety", "Context API"],
+      },
+      {
+        name: "Tailwind CSS v4",
+        highlight: true,
+        depth: "Thành thạo",
+        tags: ["Responsive Design", "Dark Theme", "Glassmorphism", "Micro-interactions"],
+      },
+      {
+        name: "RESTful API Architecture",
+        highlight: false,
+        depth: "Thực chiến",
+        tags: ["Client-Server", "JSON Endpoints", "Error Handling", "Async/Await"],
+      },
+    ],
+  },
+  {
+    id: "ai-solutions",
+    category: "Trí Tuệ Nhân Tạo & Ứng Dụng",
+    badge: "AI & GenAI",
+    description:
+      "Tích hợp các mô hình ngôn ngữ lớn (LLMs), thiết kế Prompt Engineering có cấu trúc, Web Speech và tự động hóa quy trình.",
+    skills: [
+      {
+        name: "Google Gemini API",
+        highlight: true,
+        depth: "Thực chiến",
+        tags: ["Gemini 1.5 Pro / Flash", "Multi-modal AI", "API Integration", "Cost Optimization"],
+      },
+      {
+        name: "Prompt Engineering",
+        highlight: true,
+        depth: "Chuyên sâu",
+        tags: ["Structured JSON Output", "System Instructions", "Schema Validation"],
+      },
+      {
+        name: "Web Speech API (STT)",
+        highlight: false,
+        depth: "Ứng dụng",
+        tags: ["Speech-to-Text Recognition", "Voice Input", "Realtime Audio Processing"],
+      },
+      {
+        name: "Tự Động Hóa Quy Trình",
+        highlight: false,
+        depth: "Thực tế",
+        tags: ["Workflow Automation", "API Chaining", "Places API", "Tooling"],
+      },
+    ],
+  },
+  {
+    id: "database-algorithms",
+    category: "Cơ Sở Dữ Liệu & Giải Thuật",
+    badge: "Data & Logic",
+    description:
+      "Tư duy giải thuật xuất sắc từ Olympic Tin học, thiết kế cơ sở dữ liệu quan hệ chuẩn 3NF và tối ưu hóa truy vấn.",
+    skills: [
+      {
+        name: "Thuật Toán & Cấu Trúc Dữ Liệu",
+        highlight: true,
+        depth: "Giải Nhì Olympic",
+        tags: ["Olympic Tin học", "Binary Search", "Hash Tables", "Dynamic Programming"],
+      },
+      {
+        name: "MySQL & PostgreSQL",
+        highlight: true,
+        depth: "Chuyên sâu",
+        tags: ["Chuẩn hóa 3NF", "Khóa ngoại & Indexing", "Query Optimization", "Transactions"],
+      },
+      {
+        name: "Python Programming",
+        highlight: false,
+        depth: "Nâng cao",
+        tags: ["Data Structures", "System Automation", "Scripting", "Data Parsing"],
+      },
+      {
+        name: "Tối Ưu Hóa Truy Vấn",
+        highlight: false,
+        depth: "Thực tế",
+        tags: ["Query Execution Plan", "Composite Indexing", "Tránh nghẽn I/O"],
+      },
+    ],
+  },
+  {
+    id: "computer-it-helpdesk",
+    category: "Kỹ Thuật Máy Tính & IT Helpdesk",
+    badge: "Hardware & Support",
+    description:
+      "Quản trị hệ điều hành, rà soát bản quyền phần mềm, cấu hình mạng máy tính và hỗ trợ kỹ thuật IT Help Desk chuyên nghiệp.",
+    skills: [
+      {
+        name: "Quản Trị Windows & Linux",
+        highlight: true,
+        depth: "Thực chiến phòng Kỹ thuật",
+        tags: ["Windows Client/Server", "Linux Shell", "System Services", "Registry/GPO"],
+      },
+      {
+        name: "Kiểm Tra Bản Quyền Phần Mềm",
+        highlight: true,
+        depth: "Công cụ tự phát triển",
+        tags: ["CHECK-LICENCE Tool", "Audit bản quyền OS & Office", "Rà soát máy trạm phòng thi"],
+      },
+      {
+        name: "Cấu Hình Mạng Máy Tính",
+        highlight: true,
+        depth: "Chứng chỉ Google & Cisco",
+        tags: ["TCP/IP", "LAN & Wi-Fi", "Subnetting", "DNS/DHCP", "Switching & Routing"],
+      },
+      {
+        name: "Khắc Phục Sự Cố & IT Help Desk",
+        highlight: false,
+        depth: "Hỗ trợ khách hàng/đối tác",
+        tags: ["Hardware Diagnostics", "Thay thế linh kiện", "Hỗ trợ người dùng trực tiếp", "Ticket SLA"],
+      },
+    ],
+  },
+];
+
+export const journeyStages: JourneyStage[] = [
+  {
+    id: "stage-1",
+    period: "2020 - 2022",
+    phaseLabel: "GIAI ĐOẠN 01",
+    title: "Tự Học & Nền Tảng Máy Tính Ban Đầu",
+    badge: "Tự Học & Phần Cứng",
+    highlightColor: "emerald",
+    highlights: [
+      "Tự tìm hiểu cấu trúc máy tính, lắp ráp phần cứng và làm quen các hệ điều hành (Windows, Linux).",
+      "Viết những dòng code đầu tiên với C/C++ và Python, đặt nền móng tư duy giải thuật.",
+    ],
+    skills: ["Phần cứng máy tính", "Windows/Linux", "Nhập môn C/Python"],
+    image: "/images/about/hoc tap1.jpg",
+    imageAlt: "Ảnh chụp thật học tập thực tế",
+    imageCaption: "Khoảnh khắc tự học lập trình, cấu trúc máy tính & tư duy giải thuật",
+  },
+  {
+    id: "stage-2",
+    period: "2022 - 2026",
+    phaseLabel: "GIAI ĐOẠN 02",
+    title: "Đại Học HUTECH & Trợ Giảng Tin Học Quốc Tế",
+    badge: "HUTECH & Thăng Long",
+    highlightColor: "cyan",
+    highlights: [
+      "Học CNTT tại HUTECH (GPA: 3.45/4.0); đạt Giải Nhì Olympic Tin học Sinh viên (Lập trình & CSDL) - Năm 2023.",
+      "Làm Trợ giảng Tin học Quốc tế tại Công ty Thăng Long (2023 – T6/2026): hỗ trợ học viên IC3/MOS và tự lập trình web thi thử ic3-gs6.vercel.app.",
+      "Hoàn thành chứng chỉ quốc tế: Google IT Support, Cisco JavaScript & Networking, Python UMich.",
+    ],
+    skills: [
+      "Cấu trúc dữ liệu & Giải thuật",
+      "CSDL MySQL",
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Quản trị mạng",
+    ],
+    image: "/images/about/school-lab.jpg",
+    imageAlt: "Ảnh chụp thật phòng máy lab HUTECH",
+    imageCaption: "Phòng máy lab máy tính & không gian nghiên cứu giải thuật HUTECH",
+  },
+  {
+    id: "stage-3",
+    period: "06/2026 - HIỆN TẠI",
+    phaseLabel: "GIAI ĐOẠN 03",
+    title: "Kỹ Sư Phần Mềm (Software Engineer)",
+    badge: "Kỹ Sư Phần Mềm",
+    highlightColor: "purple",
+    isCurrent: true,
+    highlights: [
+      "Chính thức đảm nhiệm vai trò Kỹ sư phần mềm, tập trung phát triển các giải pháp Web hiện đại và tích hợp Trí tuệ nhân tạo (GenAI).",
+      "Triển khai các sản phẩm thực tế: AI Trip Planner (Lập lịch trình thông minh bằng Google Gemini API), AI Mock Interview (Mô phỏng phỏng vấn với AI & Web Speech API), CHECK-LICENCE (Tự động hóa kiểm tra bản quyền phần mềm và hệ thống).",
+      "Thiết kế kiến trúc phần mềm hướng Clean Code, tối ưu trải nghiệm người dùng và hiệu năng xử lý.",
+    ],
+    skills: [
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS",
+      "Google Gemini API",
+      "Full-Stack Development",
+    ],
+    image: "/images/about/hoc tap3.jpg",
+    imageAlt: "Ảnh chụp nhóm có 3 người xung quanh đều mặc áo trắng thao tác bên laptop",
+    imageCaption: "Làm việc nhóm & phát triển giải pháp phần mềm trên laptop cùng đồng nghiệp",
+  },
+];
+
+export const experienceData: ExperienceItem[] = [
+  {
+    id: "thanglong-it-engineer",
+    company: "Công Ty TNHH GD&ĐT Ngoại Ngữ Tin Học Thăng Long",
+    role: "Kỹ Sư Máy Tính (IT Engineer / IT Help Desk)",
+    department: "Phòng Kỹ thuật",
+    period: "09/2026 - Hiện tại",
+    location: "Văn phòng công ty và các địa điểm đối tác, khách hàng",
+    isCurrent: true,
+    summary:
+      "Chịu trách nhiệm quản trị, bảo trì hạ tầng hệ thống máy tính, xử lý sự cố phần cứng, hệ điều hành và mạng nội bộ; phát triển công cụ CHECK-LICENCE tự động hóa rà soát bản quyền và hỗ trợ kỹ thuật trực tiếp cho người dùng, đối tác.",
+    duties: [
+      "Quản trị, bảo trì và đảm bảo tính sẵn sàng cao của hệ thống máy tính, mạng nội bộ (LAN/Wi-Fi/IP) tại văn phòng công ty và các cơ sở đối tác liên kết.",
+      "Tiếp nhận yêu cầu, hỗ trợ kỹ thuật người dùng, xử lý và khắc phục sự cố phần cứng/phần mềm (IT Help Desk).",
+      "Ứng dụng công cụ tự động hóa CHECK-LICENCE rà soát bản quyền máy trạm và phòng máy thi quốc tế.",
+      "Cấu hình hệ thống máy chủ, máy trạm và cài đặt phần mềm thi chuẩn quốc tế.",
+    ],
+    metrics: [
+      { label: "Bộ phận", value: "Phòng Kỹ thuật" },
+      { label: "Công cụ phát triển", value: "CHECK-LICENCE" },
+      { label: "Phạm vi hạ tầng", value: "Máy trạm & Mạng LAN/Wi-Fi" },
+      { label: "Hỗ trợ kỹ thuật", value: "IT Help Desk trực tiếp" },
+    ],
+    technologies: [
+      "Hardware Diagnostics",
+      "Windows & Linux",
+      "Mạng Máy Tính (LAN/Wi-Fi)",
+      "CHECK-LICENCE",
+      "IT Help Desk",
+      "System Automation",
+    ],
+  },
+  {
+    id: "thanglong-teaching-assistant",
+    company: "Công Ty TNHH GD&ĐT Ngoại Ngữ Tin Học Thăng Long",
+    role: "Trợ Giảng Tin Học Quốc Tế",
+    department: "Bộ phận Đào tạo & Khảo thí",
+    period: "2023 - 06/2026",
+    location: "TP. Hồ Chí Minh, Việt Nam",
+    isCurrent: false,
+    summary:
+      "Hỗ trợ công tác đào tạo các chứng chỉ tin học quốc tế (IC3, MOS); hướng dẫn học viên thực hành máy tính và xây dựng nền tảng luyện thi trực tuyến ic3-gs6.vercel.app.",
+    duties: [
+      "Thiết lập môi trường thực hành máy tính, cài đặt phần mềm mô phỏng cho các khóa thi IC3, MOS.",
+      "Hỗ trợ giảng viên chuẩn bị giáo án, học liệu số và giải đáp bài tập thực hành thuật toán cho học viên.",
+      "Thiết kế và xây dựng nền tảng web thi thử trực tuyến IC3 GS6 (ic3-gs6.vercel.app) hỗ trợ học viên tự luyện đề và làm quen giao diện thi quốc tế.",
+    ],
+    metrics: [
+      { label: "Nền tảng Web", value: "ic3-gs6.vercel.app" },
+      { label: "Khóa đào tạo", value: "IC3 GS6 & MOS" },
+      { label: "Học viên hỗ trợ", value: "Hàng trăm học viên" },
+      { label: "Tỷ lệ đỗ kỳ thi", value: "> 92% Pass Rate" },
+    ],
+    technologies: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Vercel",
+      "IC3 GS6 Standards",
+      "Teaching Assistant",
+    ],
+  },
+  {
+    id: "hutech-tech-dev",
+    company: "HUTECH - Đại Học Công Nghệ TP.HCM",
+    role: "Thành Viên Phát Triển Công Nghệ (Technology Development)",
+    department: "Bộ phận Phát triển Công nghệ Khoa CNTT",
+    period: "2022 - 2023",
+    location: "TP. Hồ Chí Minh, Việt Nam",
+    isCurrent: false,
+    summary:
+      "Phối hợp cùng giảng viên và nhóm sinh viên phát triển các module phần mềm học tập, quản lý nội dung học phần và số hóa dữ liệu học tập.",
+    duties: [
+      "Phối hợp cùng giảng viên và nhóm sinh viên phát triển các module phần mềm học tập, quản lý nội dung học phần và số hóa dữ liệu học tập.",
+      "Thiết kế cơ sở dữ liệu quan hệ MySQL chuẩn hóa 3NF, đảm bảo toàn vẹn dữ liệu học phần.",
+      "Xây dựng các API RESTful truy xuất an toàn và kiểm thử chức năng trước khi áp dụng thử nghiệm nội bộ.",
+    ],
+    metrics: [
+      { label: "Đơn vị", value: "Khoa CNTT HUTECH" },
+      { label: "Cơ sở dữ liệu", value: "MySQL chuẩn 3NF" },
+      { label: "Mô hình kiến trúc", value: "RESTful APIs" },
+      { label: "Hiệu quả", value: "Số hóa tài liệu học tập" },
+    ],
+    technologies: [
+      "JavaScript",
+      "React",
+      "Node.js",
+      "MySQL",
+      "Git",
+      "RESTful API",
+      "HTML5/CSS3",
+    ],
+  },
+];
+
+export const projectsData: ProjectItem[] = [
+  {
+    id: "ic3-gs6-platform",
+    title: "IC3 GS6 - Nền Tảng Luyện Thi Chứng Chỉ Tin Học Quốc Tế",
+    role: "Full-Stack Developer",
+    summary:
+      "Hệ thống thi thử trực tuyến IC3 GS6 với ngân hàng đề phong phú, tính giờ thi thực tế, chấm điểm và phản hồi tự động.",
+    description:
+      "Hệ thống thi thử trực tuyến IC3 GS6 với ngân hàng đề phong phú, tính giờ thi thực tế, chấm điểm và phản hồi tự động.",
+    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Vercel"],
+    imageUrl: "/images/project.jpg",
+    demoUrl: "https://ic3-gs6.vercel.app/",
+    githubUrl: "https://github.com/tranthinh2607/ic3-gs6",
+    featured: true,
+  },
+  {
+    id: "ai-trip-planner",
+    title: "AI Trip Planner - Ứng Dụng Lập Lịch Trình Du Lịch Bằng GenAI",
+    role: "AI & Frontend Developer",
+    summary:
+      "Ứng dụng tích hợp mô hình Google Gemini AI tự động lên lịch trình du lịch thông minh, gợi ý khách sạn, địa điểm tham quan và dự toán chi phí.",
+    description:
+      "Ứng dụng tích hợp mô hình Google Gemini AI tự động lên lịch trình du lịch thông minh, gợi ý khách sạn, địa điểm tham quan và dự toán chi phí.",
+    technologies: ["React", "Next.js", "Google Gemini API", "Google Places API", "Tailwind CSS"],
+    imageUrl: "/images/project.jpg",
+    demoUrl: "https://ai-trip-planner-web-snowy.vercel.app/",
+    githubUrl: "https://github.com/tranthinh2607/ai-trip-planner-web",
+    featured: true,
+  },
+  {
+    id: "ai-mock-interview",
+    title: "AI Mock Interview - Hệ Thống Mô Phỏng Phỏng Vấn Với AI",
+    role: "Full-Stack & AI Engineer",
+    summary:
+      "Nền tảng phỏng vấn kỹ thuật trực tuyến: AI đóng vai trò nhà tuyển dụng đặt câu hỏi, lắng nghe giọng nói (Speech-to-Text) và phân tích câu trả lời.",
+    description:
+      "Nền tảng phỏng vấn kỹ thuật trực tuyến: AI đóng vai trò nhà tuyển dụng đặt câu hỏi, lắng nghe giọng nói (Speech-to-Text) và phân tích câu trả lời.",
+    technologies: ["Next.js", "React 19", "TypeScript", "Gemini API", "Web Speech API", "Tailwind CSS"],
+    imageUrl: "/images/project.jpg",
+    githubUrl: "https://github.com/tranthinh2607/ai-mock-interview",
+    featured: true,
+  },
+  {
+    id: "check-licence",
+    title: "CHECK-LICENCE - Tiện Ích Kiểm Tra Bản Quyền Hệ Thống & Phần Mềm",
+    role: "Tool Developer / Software Engineer",
+    summary:
+      "Công cụ tự động hóa rà soát, kiểm tra trạng thái kích hoạt bản quyền của hệ điều hành và các phần mềm ứng dụng trên máy trạm và phòng máy.",
+    description:
+      "Công cụ tự động hóa rà soát, kiểm tra trạng thái kích hoạt bản quyền của hệ điều hành và các phần mềm ứng dụng trên máy trạm và phòng máy.",
+    technologies: ["Python / Scripting", "System Commands", "Windows Management"],
+    imageUrl: "/images/project.jpg",
+    githubUrl: "https://github.com/tranthinh2607/CHECK-LICENCE",
+    featured: true,
+  },
+];
+
+export const certificatesData: CertificateItem[] = [
+  {
+    id: "the-bits-and-bytes",
+    title: "The Bits and Bytes of Computer Networking",
+    issuer: "Google / Coursera",
+    issuerLogoText: "Google",
+    issueDate: "2024",
+    credentialId: "GGL-NET-882319",
+    imageUrl: "/images/chung chi/the-bits-and-bytes-of-computer-networking.png",
+    pdfUrl: "/images/chung chi/The Bits and Bytes of Computer Networking.pdf",
+    skills: ["TCP/IP", "DNS", "DHCP", "Subnetting", "Routing", "Packet Analysis"],
+    highlight: true,
+  },
+  {
+    id: "javascript-essentials-1",
+    title: "JavaScript Essentials 1",
+    issuer: "Cisco Networking Academy & OpenEDG",
+    issuerLogoText: "Cisco",
+    issueDate: "2024",
+    credentialId: "CSCO-JSE1-2026",
+    imageUrl: "/images/chung chi/javascriptessentials1update20260913-20-ct55bc.png",
+    pdfUrl: "/images/chung chi/JavaScriptEssentials1Update20260913-20-ct55bc.pdf",
+    skills: ["JavaScript Core", "Data Types", "Control Flow", "Functions", "DOM"],
+    highlight: true,
+  },
+  {
+    id: "javascript-essentials-2",
+    title: "JavaScript Essentials 2 (Advanced)",
+    issuer: "Cisco Networking Academy & OpenEDG",
+    issuerLogoText: "Cisco",
+    issueDate: "2024",
+    credentialId: "CSCO-JSE2-2026",
+    imageUrl: "/images/chung chi/javascriptessentials2update20260913-20-2b63hv.png",
+    pdfUrl: "/images/chung chi/JavaScriptEssentials2Update20260913-20-2b63hv.pdf",
+    skills: ["Asynchronous JS", "Promises", "Event Loop", "Prototypes", "OOP"],
+    highlight: true,
+  },
+  {
+    id: "networking-basics",
+    title: "Networking Basics",
+    issuer: "Cisco Networking Academy",
+    issuerLogoText: "Cisco",
+    issueDate: "2024",
+    credentialId: "CSCO-NET-2026",
+    imageUrl: "/images/chung chi/networkingbasicsupdate20260913-20-e0m2tj.png",
+    pdfUrl: "/images/chung chi/NetworkingBasicsUpdate20260913-20-e0m2tj.pdf",
+    skills: ["Network Topologies", "Ethernet", "Switching", "IPv4/IPv6"],
+    highlight: false,
+  },
+  {
+    id: "network-architecture-fundamentals",
+    title: "Network Architecture Fundamentals",
+    issuer: "Cisco / Google",
+    issuerLogoText: "Cisco",
+    issueDate: "2024",
+    credentialId: "CSCO-NET-ARCH-2026",
+    imageUrl: "/images/chung chi/network-architecture-fundamentals.png",
+    pdfUrl: "/images/chung chi/Network Architecture Fundamentals.pdf",
+    skills: ["Network Design", "Cloud Infrastructure", "Routing Protocols", "OSI Model"],
+    highlight: true,
+  },
+  {
+    id: "python-data-structures",
+    title: "Python Data Structures",
+    issuer: "University of Michigan (Coursera)",
+    issuerLogoText: "UMich",
+    issueDate: "2023",
+    credentialId: "UMICH-PY-DS-9102",
+    imageUrl: "/images/chung chi/python-data-structures.png",
+    pdfUrl: "/images/chung chi/Python Data Structures.pdf",
+    skills: ["Hash Tables", "Lists", "Tuples", "Dictionaries", "Algorithms"],
+    highlight: true,
+  },
+  {
+    id: "programming-for-everybody",
+    title: "Programming for Everybody (Getting Started with Python)",
+    issuer: "University of Michigan (Coursera)",
+    issuerLogoText: "UMich",
+    issueDate: "2023",
+    credentialId: "UMICH-PY-BEG-8812",
+    imageUrl: "/images/chung chi/programming-for-everybody-getting-started-with-python.png",
+    pdfUrl: "/images/chung chi/Programming for Everybody (Getting Started with Python).pdf",
+    skills: ["Python Basics", "Data Analysis", "Scripting", "Logic Flow"],
+    highlight: false,
+  },
+  {
+    id: "using-python-to-access-web-data",
+    title: "Using Python to Access Web Data",
+    issuer: "University of Michigan (Coursera)",
+    issuerLogoText: "UMich",
+    issueDate: "2023",
+    credentialId: "UMICH-PY-WEB-5512",
+    imageUrl: "/images/chung chi/using-python-to-access-web-data.png",
+    pdfUrl: "/images/chung chi/Using Python to Access Web Data.pdf",
+    skills: ["Web Scraping", "REST APIs", "JSON/XML Parsing", "HTTP Protocols"],
+    highlight: false,
+  },
+  {
+    id: "gemini-certified-educator",
+    title: "Gemini Certified Educator",
+    issuer: "Google for Education",
+    issuerLogoText: "Google",
+    issueDate: "2024",
+    credentialId: "GOOG-GEM-EDU-104",
+    imageUrl: "/images/chung chi/gemini-certified-educator.png",
+    pdfUrl: "/images/chung chi/Gemini Certified Educator.pdf",
+    skills: ["Generative AI", "Prompt Engineering", "AI in Education & Productivity"],
+    highlight: false,
+  },
+  {
+    id: "gemini-certified-university-student",
+    title: "Gemini Certified University Student",
+    issuer: "Google",
+    issuerLogoText: "Google",
+    issueDate: "2024",
+    credentialId: "GOOG-GEM-STU-105",
+    imageUrl: "/images/chung chi/gemini-certified-university-student.png",
+    pdfUrl: "/images/chung chi/Gemini Certified University Student.pdf",
+    skills: ["AI Research", "Large Language Models", "AI-Assisted Development"],
+    highlight: false,
+  },
+  {
+    id: "google-play-store-listing",
+    title: "Google Play Store Listing Certification",
+    issuer: "Google Play Academy",
+    issuerLogoText: "Google Play",
+    issueDate: "2024",
+    credentialId: "GOOG-PLAY-8819",
+    imageUrl: "/images/chung chi/google-play-academy---store-listing-certificate.png",
+    pdfUrl: "/images/chung chi/Google Play Academy - Store Listing Certificate.pdf",
+    skills: ["App Store Optimization (ASO)", "Store Listing Policy", "Android Distribution"],
+    highlight: false,
+  },
+];
+
+// ============================================================================
+// ARTICLES DATA (Đã gỡ bỏ khỏi giao diện để tối ưu trang web gọn gàng)
+// ============================================================================
+export const articlesData: ArticleItem[] = [];
+
