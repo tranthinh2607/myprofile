@@ -26,7 +26,7 @@ export const personalInfo: PersonalInfo = {
   x: "https://x.com/TruongThinh2607",
   linkedin: "https://linkedin.com",
   avatarUrl: "/images/about/thinh-portrait.jpg",
-  cvUrl: "/images/Tran-Mai-Truong-Thinh-CV.pdf",
+  cvUrl: "/images/Tran-Mai-Truong-Thinh-CV-V6",
   availability: {
     status: "available",
     badgeText: "Sẵn sàng cho cơ hội Software Engineer & Computer Engineer",
