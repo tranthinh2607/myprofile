@@ -117,3 +117,209 @@ body {
 .animate-live-pulse {
   animation: livePulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+
+/* ========================================================== */
+/* Microsoft Word Style WYSIWYG Editor Canvas (Tiptap)        */
+/* ========================================================== */
+.tiptap.ProseMirror {
+  outline: none;
+  min-height: 520px;
+  font-family: var(--font-sans);
+  color: #e4e4e7;
+  line-height: 1.75;
+}
+
+.tiptap.ProseMirror p {
+  margin: 0.75rem 0;
+}
+
+.tiptap.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: #71717a;
+  pointer-events: none;
+  height: 0;
+}
+
+.tiptap.ProseMirror h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.25;
+}
+
+.tiptap.ProseMirror h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #f4f4f5;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid #27272a;
+  padding-bottom: 0.35rem;
+}
+
+.tiptap.ProseMirror h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #e4e4e7;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.tiptap.ProseMirror ul {
+  list-style-type: disc;
+  padding-left: 1.75rem;
+  margin: 0.75rem 0;
+}
+
+.tiptap.ProseMirror ol {
+  list-style-type: decimal;
+  padding-left: 1.75rem;
+  margin: 0.75rem 0;
+}
+
+.tiptap.ProseMirror li {
+  margin: 0.35rem 0;
+}
+
+.tiptap.ProseMirror blockquote {
+  border-left: 4px solid #10b981;
+  background: rgba(16, 185, 129, 0.05);
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+  border-radius: 0 0.5rem 0.5rem 0;
+  font-style: italic;
+  color: #d4d4d8;
+}
+
+.tiptap.ProseMirror pre {
+  background: #09090b;
+  border: 1px solid #27272a;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin: 1rem 0;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: #6ee7b7;
+  overflow-x: auto;
+}
+
+.tiptap.ProseMirror code:not(pre code) {
+  background: #27272a;
+  color: #6ee7b7;
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+}
+
+.tiptap.ProseMirror hr {
+  border: none;
+  border-top: 1px solid #27272a;
+  margin: 2rem 0;
+}
+
+.tiptap.ProseMirror table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.25rem 0;
+  border: 1px solid #27272a;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.tiptap.ProseMirror th {
+  background: rgba(39, 39, 42, 0.8);
+  border: 1px solid #3f3f46;
+  padding: 0.6rem 0.85rem;
+  text-align: left;
+  font-weight: 600;
+  color: #f4f4f5;
+  font-size: 0.875rem;
+}
+
+.tiptap.ProseMirror td {
+  border: 1px solid #27272a;
+  padding: 0.6rem 0.85rem;
+  color: #d4d4d8;
+  font-size: 0.875rem;
+}
+
+.tiptap.ProseMirror {
+  outline: none;
+  min-height: 540px;
+  font-family: var(--font-sans);
+  color: #e4e4e7;
+  line-height: 1.75;
+  padding-bottom: 6rem;
+}
+
+.tiptap.ProseMirror img {
+  display: block;
+  height: auto;
+  max-height: 520px;
+  object-fit: contain;
+  border-radius: 0.75rem;
+  border: 1px solid #27272a;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+  transition: all 0.2s ease-in-out;
+}
+
+/* Word-style Image Alignment */
+.tiptap.ProseMirror img[data-align="left"],
+.markdown-body img[data-align="left"] {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+.tiptap.ProseMirror img[data-align="center"],
+.markdown-body img[data-align="center"] {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.tiptap.ProseMirror img[data-align="right"],
+.markdown-body img[data-align="right"] {
+  margin-left: auto !important;
+  margin-right: 0 !important;
+}
+
+/* Word-style Image Sizing */
+.tiptap.ProseMirror img[data-size="small"],
+.markdown-body img[data-size="small"] {
+  max-width: 320px !important;
+  width: auto !important;
+}
+
+.tiptap.ProseMirror img[data-size="medium"],
+.markdown-body img[data-size="medium"] {
+  max-width: 580px !important;
+  width: auto !important;
+}
+
+.tiptap.ProseMirror img[data-size="full"],
+.markdown-body img[data-size="full"] {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+/* Selected Image Node Highlight in Word Editor */
+.tiptap.ProseMirror img.ProseMirror-selectednode,
+.tiptap.ProseMirror .ProseMirror-selectednode img {
+  outline: 3px solid #10b981;
+  outline-offset: 4px;
+}
+
+.tiptap.ProseMirror iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 0.75rem;
+  border: 1px solid #27272a;
+  margin: 1.25rem 0;
+}
+
+

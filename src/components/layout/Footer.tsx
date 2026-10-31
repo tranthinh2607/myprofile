@@ -66,16 +66,27 @@ export function Footer() {
                 </a>
               </li>
               <li>
+                <a href="#blog" className="hover:text-emerald-400 transition-colors">
+                  &gt; Bài viết &amp; Blog kỹ thuật
+                </a>
+              </li>
+              <li>
                 <a href="#contact" className="hover:text-emerald-400 transition-colors">
                   &gt; Liên hệ trực tiếp
                 </a>
               </li>
-              <li className="pt-1">
+              <li className="pt-1 flex flex-col gap-1">
                 <Link
-                  href="/admin/messages"
+                  href="/blog"
+                  className="text-zinc-500 hover:text-emerald-400 transition-colors inline-flex items-center gap-1 text-[11px]"
+                >
+                  &gt; Khám phá toàn bộ Blog (/blog)
+                </Link>
+                <Link
+                  href="/admin"
                   className="text-zinc-600 hover:text-emerald-400 transition-colors inline-flex items-center gap-1 text-[11px]"
                 >
-                  &gt; Hộp thư Kỹ sư (Admin)
+                  &gt; Cổng Quản trị Admin (/admin)
                 </Link>
               </li>
             </ul>

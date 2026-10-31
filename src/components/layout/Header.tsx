@@ -2,17 +2,21 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, FileDown, Terminal, Send, Sun, Moon } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { Menu, X, FileDown, Terminal, Send, Sun, Moon, BookOpen } from "lucide-react";
 import { personalInfo } from "@/data/profile-data";
 
 const navItems = [
-  { label: "Về tôi", href: "#about" },
-  { label: "Dự án", href: "#projects" },
-  { label: "Chứng chỉ", href: "#certificates" },
-  { label: "Liên hệ", href: "#contact" },
+  { label: "Về tôi", hash: "about" },
+  { label: "Dự án", hash: "projects" },
+  { label: "Chứng chỉ", hash: "certificates" },
+  { label: "Bài viết", hash: "blog" },
+  { label: "Liên hệ", hash: "contact" },
 ];
 
 export function Header() {
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
   const [activeSection, setActiveSection] = useState<string>("about");
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
@@ -23,17 +27,24 @@ export function Header() {
     const isDarkMode = document.documentElement.classList.contains("dark");
     setIsDark(isDarkMode);
 
+    if (!isHomePage) {
+      if (pathname.startsWith("/blog")) {
+        setActiveSection("blog");
+      }
+      return;
+    }
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      // Simple scrollspy
-      const sections = navItems.map((item) => item.href.substring(1));
+      // Scrollspy
+      const sectionIds = navItems.map((item) => item.hash);
       const scrollPosition = window.scrollY + 200;
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const sectionEl = document.getElementById(sections[i]);
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const sectionEl = document.getElementById(sectionIds[i]);
         if (sectionEl && sectionEl.offsetTop <= scrollPosition) {
-          setActiveSection(sections[i]);
+          setActiveSection(sectionIds[i]);
           break;
         }
       }
@@ -41,7 +52,7 @@ export function Header() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isHomePage, pathname]);
 
   const toggleTheme = () => {
     const nextDark = !isDark;
@@ -70,7 +81,7 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Brand / Logo */}
         <Link
-          href="#hero"
+          href={isHomePage ? "#hero" : "/"}
           className="flex items-center gap-2.5 group focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded-lg p-1"
         >
           <div className="w-8 h-8 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-emerald-400 group-hover:border-emerald-500/60 transition-colors shadow-inner">
@@ -89,12 +100,13 @@ export function Header() {
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-1 bg-zinc-900/60 border border-zinc-800/70 rounded-full px-3 py-1.5 backdrop-blur-sm shadow-inner">
           {navItems.map((item) => {
-            const id = item.href.substring(1);
-            const isActive = activeSection === id;
+            const isActive = activeSection === item.hash;
+            const targetHref = isHomePage ? `#${item.hash}` : `/#${item.hash}`;
+
             return (
               <a
-                key={item.href}
-                href={item.href}
+                key={item.hash}
+                href={targetHref}
                 className={`px-4 py-1 rounded-full text-xs font-mono transition-all duration-200 ${
                   isActive
                     ? "bg-emerald-500/15 text-emerald-400 font-medium shadow-sm border border-emerald-500/30"
@@ -113,7 +125,7 @@ export function Header() {
           <button
             onClick={toggleTheme}
             aria-label={isDark ? "Chuyển sang chế độ sáng" : "Chuyển sang chế độ tối"}
-            className="p-2 rounded-lg border border-zinc-800 bg-zinc-900/80 hover:bg-zinc-800 text-zinc-300 hover:text-emerald-400 transition-colors"
+            className="p-2 rounded-lg border border-zinc-800 bg-zinc-900/80 hover:bg-zinc-800 text-zinc-300 hover:text-emerald-400 transition-colors cursor-pointer"
             title={isDark ? "Chế độ tối (Bấm để chuyển sáng)" : "Chế độ sáng (Bấm để chuyển tối)"}
           >
             {isDark ? <Sun className="w-3.5 h-3.5 text-amber-400" /> : <Moon className="w-3.5 h-3.5 text-cyan-400" />}
@@ -124,7 +136,7 @@ export function Header() {
             href={personalInfo.cvUrl}
             target="_blank"
             rel="noopener noreferrer"
-            download
+            download="TRANMAITRUONGTHINH.PDF"
             className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-zinc-800 bg-zinc-900/80 hover:bg-zinc-800 text-zinc-300 hover:text-white text-xs font-mono transition-all duration-200 shadow-sm"
           >
             <FileDown className="w-3.5 h-3.5 text-emerald-400" />
@@ -133,7 +145,7 @@ export function Header() {
 
           {/* Contact Action */}
           <a
-            href="#contact"
+            href={isHomePage ? "#contact" : "/#contact"}
             className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-zinc-950 text-xs font-semibold font-mono transition-all duration-200 shadow-md shadow-emerald-500/20"
           >
             <Send className="w-3.5 h-3.5" />
@@ -144,7 +156,7 @@ export function Header() {
         {/* Mobile Hamburger Button */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="lg:hidden p-2 rounded-lg border border-zinc-800 bg-zinc-900/80 text-zinc-300 hover:text-white focus:outline-none"
+          className="lg:hidden p-2 rounded-lg border border-zinc-800 bg-zinc-900/80 text-zinc-300 hover:text-white focus:outline-none cursor-pointer"
           aria-label={isMobileMenuOpen ? "Đóng menu" : "Mở menu"}
         >
           {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -155,24 +167,38 @@ export function Header() {
       {isMobileMenuOpen && (
         <div className="lg:hidden bg-zinc-950/98 border-b border-zinc-800/90 backdrop-blur-xl px-4 pt-3 pb-6 space-y-2 animate-in fade-in slide-in-from-top-3">
           <nav className="flex flex-col space-y-1">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="px-3 py-2.5 rounded-lg text-sm font-mono text-zinc-300 hover:bg-zinc-900 hover:text-emerald-400 transition-colors flex items-center justify-between"
-              >
-                <span>{item.label}</span>
-                <span className="text-[10px] text-zinc-400">{item.href}</span>
-              </a>
-            ))}
+            {navItems.map((item) => {
+              const targetHref = isHomePage ? `#${item.hash}` : `/#${item.hash}`;
+              return (
+                <a
+                  key={item.hash}
+                  href={targetHref}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="px-3 py-2.5 rounded-lg text-sm font-mono text-zinc-300 hover:bg-zinc-900 hover:text-emerald-400 transition-colors flex items-center justify-between"
+                >
+                  <span>{item.label}</span>
+                  <span className="text-[10px] text-zinc-400">#{item.hash}</span>
+                </a>
+              );
+            })}
+            <Link
+              href="/blog"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="px-3 py-2.5 rounded-lg text-sm font-mono text-emerald-400 hover:bg-emerald-500/10 transition-colors flex items-center justify-between border-t border-zinc-850 mt-1"
+            >
+              <span className="flex items-center gap-2">
+                <BookOpen className="w-4 h-4" />
+                Trang Blog Đầy Đủ
+              </span>
+              <span className="text-[10px] text-zinc-400">/blog</span>
+            </Link>
           </nav>
           <div className="pt-3 flex flex-col gap-2 border-t border-zinc-800/80">
             <div className="flex items-center justify-between px-2 py-1">
               <span className="text-xs font-mono text-zinc-400">Giao diện (Dark / Light):</span>
               <button
                 onClick={toggleTheme}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-zinc-800 bg-zinc-900 text-zinc-200 text-xs font-mono"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-zinc-800 bg-zinc-900 text-zinc-200 text-xs font-mono cursor-pointer"
               >
                 {isDark ? (
                   <>
@@ -191,19 +217,19 @@ export function Header() {
               href={personalInfo.cvUrl}
               target="_blank"
               rel="noopener noreferrer"
-              download
+              download="TRANMAITRUONGTHINH.PDF"
               className="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg border border-zinc-800 bg-zinc-900 text-zinc-200 text-xs font-mono font-medium"
             >
               <FileDown className="w-4 h-4 text-emerald-400" />
               Tải CV Bản Đầy Đủ
             </a>
             <a
-              href="#contact"
+              href={isHomePage ? "#contact" : "/#contact"}
               onClick={() => setIsMobileMenuOpen(false)}
               className="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg bg-emerald-500 text-zinc-950 text-xs font-mono font-semibold"
             >
               <Send className="w-4 h-4" />
-              Liên Hệ Trực Tiếp
+              Gửi Tin Nhắn Cho Tôi
             </a>
           </div>
         </div>

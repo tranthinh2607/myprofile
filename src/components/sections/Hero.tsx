@@ -208,7 +208,7 @@ export function Hero() {
                 href={personalInfo.cvUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                download
+                download="TRANMAITRUONGTHINH.PDF"
                 className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-mono font-semibold text-sm transition-all duration-200 shadow-lg shadow-emerald-500/20 hover:scale-[1.02] active:scale-[0.98]"
               >
                 <FileDown className="w-4 h-4" />
