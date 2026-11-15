@@ -129,6 +129,7 @@ export interface CertificateItem {
   credentialId?: string;
   verifyUrl?: string;
   imageUrl?: string;
+  images?: string[];
   pdfUrl?: string;
   skills: string[];
   highlight?: boolean;

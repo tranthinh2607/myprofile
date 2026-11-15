@@ -26,6 +26,47 @@ function extractYouTubeId(url: string): string | null {
 }
 
 /**
+ * Kiểm tra xem alt text có phải là chú thích thực sự hay chỉ là tên file tự động (Screenshot, image.png,...)
+ */
+function isValidCaption(alt?: string): boolean {
+  if (!alt) return false;
+  const trimmed = alt.trim();
+  if (!trimmed) return false;
+  const lower = trimmed.toLowerCase();
+
+  // Bỏ qua các tên mặc định hoặc placeholder
+  if (
+    lower === "ảnh bài viết" ||
+    lower === "hình ảnh bài viết" ||
+    lower === "ảnh minh họa" ||
+    lower === "hình ảnh" ||
+    lower === "image" ||
+    lower === "image.png" ||
+    lower === "cover preview"
+  ) {
+    return false;
+  }
+
+  // Bỏ qua các tên file tự sinh từ screenshot hoặc clipboard
+  if (
+    lower.startsWith("screenshot") ||
+    lower.startsWith("screen shot") ||
+    lower.startsWith("ảnh chụp màn hình") ||
+    lower.startsWith("pasted image") ||
+    lower.startsWith("clipboard")
+  ) {
+    return false;
+  }
+
+  // Bỏ qua nếu là tên file thô (chứa đuôi file ảnh)
+  if (/\.(png|jpe?g|webp|gif|svg|bmp|avif)$/i.test(trimmed)) {
+    return false;
+  }
+
+  return true;
+}
+
+/**
  * Custom URL transformer để cho phép Data URL (base64) và Blob URL
  * Mặc định react-markdown chặn các URL protocol như data: và blob: vì lý do bảo mật,
  * khiến các hình ảnh paste từ clipboard (Data URLs) bị chuyển thành rỗng và không hiển thị trong Xem trước và Bài viết.
@@ -94,7 +135,7 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
             img: ({ src, alt, ...props }: any) => {
               if (!src) return null;
               const align = props["data-align"] || "center";
-              const size = props["data-size"] || "medium";
+              const size = props["data-size"] || "full";
 
               const figureAlign =
                 align === "left"
@@ -103,12 +144,11 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
                   ? "ml-auto mr-0"
                   : "mx-auto";
 
+              // Kích thước hiển thị: Full chiều rộng khung đọc để hình ảnh và chữ trong ảnh to rõ, sắc nét
               const figureSize =
                 size === "small"
-                  ? "max-w-[320px]"
-                  : size === "full"
-                  ? "max-w-full w-full"
-                  : "max-w-[620px]";
+                  ? "max-w-md w-full"
+                  : "w-full max-w-full";
 
               return (
                 <figure className={`my-8 group ${figureAlign} ${figureSize}`}>
@@ -122,7 +162,7 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
                       src={src}
                       alt={alt || "Hình ảnh bài viết"}
                       loading="lazy"
-                      className="w-full h-auto max-h-[520px] object-contain mx-auto transition-transform duration-500 group-hover:scale-[1.01]"
+                      className="w-full h-auto max-h-[850px] object-contain mx-auto transition-transform duration-500 group-hover:scale-[1.01]"
                       {...props}
                     />
 
@@ -132,13 +172,8 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
                     </div>
                   </div>
 
-                  {/* Caption */}
-                  {alt &&
-                    alt !== "image.png" &&
-                    alt !== "image.jpg" &&
-                    alt !== "image.jpeg" &&
-                    alt !== "image.webp" &&
-                    alt !== "Ảnh bài viết" && (
+                  {/* Caption: chỉ hiện khi có chú thích thực tế, ẩn tên file thô tự động */}
+                  {isValidCaption(alt) && (
                     <figcaption className="text-center text-xs text-zinc-400 font-mono mt-3 flex items-center justify-center gap-1.5">
                       <ImageIcon className="w-3.5 h-3.5 text-emerald-400/80" />
                       <span>{alt}</span>
@@ -262,16 +297,16 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
           </button>
 
           <div
-            className="max-w-5xl max-h-[90vh] flex flex-col items-center"
+            className="max-w-6xl max-h-[92vh] flex flex-col items-center"
             onClick={(e) => e.stopPropagation()}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={zoomImage.src}
               alt={zoomImage.alt || "Ảnh phóng to"}
-              className="max-w-full max-h-[82vh] object-contain rounded-2xl border border-zinc-800 shadow-2xl"
+              className="max-w-full max-h-[85vh] object-contain rounded-2xl border border-zinc-800 shadow-2xl"
             />
-            {zoomImage.alt && (
+            {isValidCaption(zoomImage.alt) && (
               <p className="text-zinc-400 text-xs font-mono mt-3 text-center">
                 {zoomImage.alt}
               </p>

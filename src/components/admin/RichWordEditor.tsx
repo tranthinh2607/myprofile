@@ -193,8 +193,10 @@ export function RichWordEditor({ value, onChange, token }: RichWordEditorProps) 
       try {
         const dataUrl = await compressImageFile(file);
         const ed = editorRef.current;
+        const isRawFilename = !file.name || /\.(png|jpe?g|webp|gif|svg)$/i.test(file.name);
+        const initialAlt = isRawFilename ? "" : file.name;
         if (ed) {
-          ed.chain().focus().setImage({ src: dataUrl, alt: file.name || "Ảnh bài viết" }).run();
+          ed.chain().focus().setImage({ src: dataUrl, alt: initialAlt }).run();
         }
 
         // Tải ngầm lên Supabase Storage nếu có token hợp lệ
@@ -1065,38 +1067,38 @@ export function RichWordEditor({ value, onChange, token }: RichWordEditorProps) 
               <button
                 type="button"
                 onClick={() => editor.chain().focus().updateAttributes("image", { size: "small" }).run()}
-                className={`px-2 py-0.5 rounded text-xs transition-colors ${
+                className={`px-2.5 py-1 rounded text-xs transition-colors ${
                   editor.getAttributes("image")?.size === "small"
                     ? "bg-emerald-500/25 text-emerald-400 font-semibold"
                     : "text-zinc-400 hover:text-white"
                 }`}
-                title="Kích thước nhỏ (320px)"
+                title="Kích thước nhỏ gọn (480px)"
               >
-                Nhỏ (320px)
+                Nhỏ (480px)
               </button>
               <button
                 type="button"
                 onClick={() => editor.chain().focus().updateAttributes("image", { size: "medium" }).run()}
-                className={`px-2 py-0.5 rounded text-xs transition-colors ${
+                className={`px-2.5 py-1 rounded text-xs transition-colors ${
                   !editor.getAttributes("image")?.size || editor.getAttributes("image")?.size === "medium"
                     ? "bg-emerald-500/25 text-emerald-400 font-semibold"
                     : "text-zinc-400 hover:text-white"
                 }`}
-                title="Kích thước vừa (580px)"
+                title="Kích thước chuẩn (100% độ rộng khung bài viết)"
               >
-                Vừa (580px)
+                Lớn (Chuẩn 100%)
               </button>
               <button
                 type="button"
                 onClick={() => editor.chain().focus().updateAttributes("image", { size: "full" }).run()}
-                className={`px-2 py-0.5 rounded text-xs transition-colors ${
+                className={`px-2.5 py-1 rounded text-xs transition-colors ${
                   editor.getAttributes("image")?.size === "full"
                     ? "bg-emerald-500/25 text-emerald-400 font-semibold"
                     : "text-zinc-400 hover:text-white"
                 }`}
-                title="Kích thước đầy đủ (100%)"
+                title="Toàn khổ (100%)"
               >
-                Toàn khổ (100%)
+                Toàn khổ
               </button>
             </div>
 

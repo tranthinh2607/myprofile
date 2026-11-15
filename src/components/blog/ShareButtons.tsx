@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Share2, Check, ExternalLink } from "lucide-react";
 
 interface ShareButtonsProps {
@@ -10,26 +10,27 @@ interface ShareButtonsProps {
 
 export function ShareButtons({ title, slug }: ShareButtonsProps) {
   const [copied, setCopied] = useState(false);
+  // URL mặc định dùng chung giữa Server SSR và Client Hydration lần đầu để triệt tiêu lỗi Hydration Mismatch
+  const defaultUrl = `https://tranmaitruongthinh.dev/blog/${slug}`;
+  const [url, setUrl] = useState(defaultUrl);
 
-  const getPostUrl = () => {
+  useEffect(() => {
+    // Sau khi hydrate thành công trên trình duyệt, cập nhật origin thực tế (vd: localhost:3000 hoặc domain thật)
     if (typeof window !== "undefined") {
-      return `${window.location.origin}/blog/${slug}`;
+      setUrl(`${window.location.origin}/blog/${slug}`);
     }
-    return `https://tranmaitruongthinh.dev/blog/${slug}`;
-  };
+  }, [slug]);
 
   const handleCopy = async () => {
     try {
-      const url = getPostUrl();
-      await navigator.clipboard.writeText(url);
+      const currentUrl = typeof window !== "undefined" ? `${window.location.origin}/blog/${slug}` : url;
+      await navigator.clipboard.writeText(currentUrl);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
       // Fallback
     }
   };
-
-  const url = getPostUrl();
 
   return (
     <div className="flex flex-wrap gap-2">

@@ -34,10 +34,10 @@ export const personalInfo: PersonalInfo = {
       "Đang mở cho các cơ hội Software Engineer, Full-Stack Developer, Computer Engineer hoặc IT Help Desk tại TP. Hồ Chí Minh hoặc hình thức Remote.",
   },
   education: {
-    degree: "Cử nhân Công nghệ Thông tin (Dự kiến tốt nghiệp 2026)",
+    degree: "Kỹ sư Công nghệ Thông tin (Tốt nghiệp loại Giỏi)",
     school: "HUTECH - Đại học Công nghệ TP.HCM",
     gpa: "3.45 / 4.0",
-    period: "2022 - Hiện tại",
+    period: "2022 - 2026",
     major: "Công Nghệ Thông Tin",
     honors: "Giải Nhì Olympic Tin học Sinh viên (Chuyên đề Lập trình & Cơ sở dữ liệu) - 2023",
     achievements: [
@@ -465,6 +465,46 @@ export const projectsData: ProjectItem[] = [
 ];
 
 export const certificatesData: CertificateItem[] = [
+  {
+    id: "hutech-bang-ky-su-cntt",
+    title: "Bằng Tốt Nghiệp Kỹ Sư Công Nghệ Thông Tin (Hạng Giỏi)",
+    issuer: "Trường Đại học Công nghệ TP.HCM (HUTECH)",
+    issuerLogoText: "HUTECH",
+    issueDate: "2026",
+    credentialId: "DKC26KS00887 - Số hiệu: A 006994",
+    imageUrl: "/images/chung chi/bangdaihoc1.jpg",
+    images: [
+      "/images/chung chi/bangdaihoc1.jpg",
+      "/images/chung chi/bangdaihoc2.jpg",
+    ],
+    skills: [
+      "Kỹ Sư Công Nghệ Thông Tin (Bậc 07)",
+      "Xếp loại tốt nghiệp: Giỏi (Very Good)",
+      "Kỹ thuật phần mềm & Hệ thống",
+      "Cấu trúc dữ liệu & Thuật toán",
+    ],
+    highlight: true,
+  },
+  {
+    id: "hutech-bang-diem-ky-su-cntt",
+    title: "Phụ Lục Văn Bằng & Bảng Điểm Tốt Nghiệp Kỹ Sư",
+    issuer: "Trường Đại học Công nghệ TP.HCM (HUTECH)",
+    issuerLogoText: "HUTECH",
+    issueDate: "2026",
+    credentialId: "MSSV: 2280603024 - Khóa 2022-2026 (150 Tín Chỉ)",
+    imageUrl: "/images/chung chi/bangdiem1.jpg",
+    images: [
+      "/images/chung chi/bangdiem1.jpg",
+      "/images/chung chi/bangdiem2.jpg",
+    ],
+    skills: [
+      "GPA Tích Lũy: 3.45 / 4.0 (Hệ 10: 8.05)",
+      "Trí tuệ nhân tạo (10.0)",
+      "Lập trình Web (9.3) & Mạng (9.3)",
+      "Quản trị CSDL (9.0) & Đồ án tốt nghiệp (9.5)",
+    ],
+    highlight: true,
+  },
   {
     id: "ibm-software-engineering",
     title: "Introduction to Software Engineering",

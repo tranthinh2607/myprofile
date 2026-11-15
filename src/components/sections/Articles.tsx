@@ -11,6 +11,8 @@ import {
   Sparkles,
   ExternalLink,
   Plus,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { formatBlogDate, estimateReadingTime } from "@/lib/blog-utils";
@@ -24,6 +26,10 @@ export function Articles({ initialPosts = [] }: ArticlesProps) {
   const [posts, setPosts] = useState<Post[]>(initialPosts);
   const [loading, setLoading] = useState(initialPosts.length === 0);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [showAll, setShowAll] = useState(false);
+
+  // Chỉ hiển thị 6 bài viết ban đầu, người dùng bấm "Xem thêm" để mở toàn bộ
+  const visiblePosts = showAll ? posts : posts.slice(0, 6);
 
   useEffect(() => {
     // Check admin status for quick edit shortcut
@@ -48,7 +54,7 @@ export function Articles({ initialPosts = [] }: ArticlesProps) {
           .select("*")
           .eq("status", "published")
           .order("published_at", { ascending: false })
-          .limit(6);
+          .limit(30);
 
         if (!error && data) {
           setPosts(data as Post[]);
@@ -115,7 +121,7 @@ export function Articles({ initialPosts = [] }: ArticlesProps) {
         {/* Posts Grid */}
         {!loading && posts.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {posts.map((post) => {
+            {visiblePosts.map((post) => {
               const readTime = estimateReadingTime(post.content || "");
               const date = post.published_at
                 ? formatBlogDate(post.published_at)
@@ -211,6 +217,29 @@ export function Articles({ initialPosts = [] }: ArticlesProps) {
           </div>
         )}
 
+        {/* Nút Xem Thêm / Thu Gọn Bài Viết */}
+        {posts.length > 6 && (
+          <div className="mt-10 text-center">
+            <button
+              type="button"
+              onClick={() => setShowAll((prev) => !prev)}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-zinc-900/90 hover:bg-zinc-800 border border-zinc-800 hover:border-emerald-500/50 text-sm font-mono text-zinc-200 hover:text-white transition-all duration-300 shadow-lg hover:shadow-emerald-500/10 cursor-pointer group"
+            >
+              {showAll ? (
+                <>
+                  <span>Thu gọn danh sách</span>
+                  <ChevronUp className="w-4 h-4 text-emerald-400 group-hover:-translate-y-0.5 transition-transform" />
+                </>
+              ) : (
+                <>
+                  <span>Xem thêm ({posts.length - 6} bài viết khác)</span>
+                  <ChevronDown className="w-4 h-4 text-emerald-400 group-hover:translate-y-0.5 transition-transform" />
+                </>
+              )}
+            </button>
+          </div>
+        )}
+
         {/* Empty State */}
         {!loading && posts.length === 0 && (
           <div className="text-center py-16 px-4 rounded-2xl bg-zinc-900/30 border border-zinc-800/80 max-w-xl mx-auto space-y-4">
@@ -236,7 +265,7 @@ export function Articles({ initialPosts = [] }: ArticlesProps) {
         )}
 
         {/* View All Button */}
-        <div className="mt-14 text-center">
+        <div className={`${posts.length > 6 ? "mt-8" : "mt-14"} text-center`}>
           <Link
             href="/blog"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-emerald-500/40 text-sm font-mono text-zinc-200 hover:text-white transition-all shadow-lg hover:shadow-emerald-500/5 group"

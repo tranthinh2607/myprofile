@@ -21,7 +21,7 @@ async function getLatestPosts(): Promise<Post[]> {
       .select("*")
       .eq("status", "published")
       .order("published_at", { ascending: false })
-      .limit(6);
+      .limit(30);
 
     if (error || !data) return [];
     return data;

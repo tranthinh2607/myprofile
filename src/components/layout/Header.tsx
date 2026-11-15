@@ -30,6 +30,10 @@ export function Header() {
     if (!isHomePage) {
       if (pathname.startsWith("/blog")) {
         setActiveSection("blog");
+      } else if (pathname.startsWith("/projects")) {
+        setActiveSection("projects");
+      } else if (pathname.startsWith("/certificates")) {
+        setActiveSection("certificates");
       }
       return;
     }

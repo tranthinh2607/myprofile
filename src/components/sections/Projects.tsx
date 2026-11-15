@@ -2,11 +2,15 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { projectsData } from "@/data/profile-data";
 import { ExternalLink, UserCheck, Layers } from "lucide-react";
 import { GithubIcon } from "@/components/icons/SocialIcons";
 
 export function Projects() {
+  // Hiển thị 4 dự án tiêu biểu trên trang chủ, bấm xem tất cả để mở trang riêng
+  const featuredProjects = projectsData.slice(0, 4);
+
   return (
     <section id="projects" className="py-24 bg-zinc-950 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -23,9 +27,9 @@ export function Projects() {
           </p>
         </div>
 
-        {/* Direct 2-Column Grid of 4 Real Projects */}
+        {/* Direct 2-Column Grid of Real Projects */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {projectsData.map((project) => (
+          {featuredProjects.map((project) => (
             <div
               key={project.id}
               className="group rounded-2xl bg-zinc-900/40 border border-zinc-800 hover:border-emerald-500/40 transition-all duration-300 flex flex-col overflow-hidden hover:shadow-2xl hover:shadow-black/70"
@@ -124,6 +128,18 @@ export function Projects() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Nút Xem Tất Cả Dự Án Sang Trang Riêng (giống nút xem Blog) */}
+        <div className="mt-14 text-center">
+          <Link
+            href="/projects"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-emerald-500/40 text-sm font-mono text-zinc-200 hover:text-white transition-all shadow-lg hover:shadow-emerald-500/5 group cursor-pointer"
+          >
+            <Layers className="w-4 h-4 text-emerald-400" />
+            <span>Xem tất cả dự án &amp; công cụ kỹ thuật</span>
+            <ExternalLink className="w-3.5 h-3.5 text-zinc-500 group-hover:text-emerald-400 transition-colors" />
+          </Link>
         </div>
       </div>
     </section>
