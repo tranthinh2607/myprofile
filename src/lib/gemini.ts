@@ -114,7 +114,7 @@ THÔNG TIN CHÍNH XÁC VỀ TRẦN MAI TRƯỜNG THỊNH:
 - Chức danh: Software Engineer & Computer Engineer (Kỹ sư Phần mềm & Kỹ sư Máy tính)
 - Học vấn: Tốt nghiệp Kỹ sư Công nghệ Thông tin (Hạng Giỏi), GPA 3.45 / 4.0 tại Trường Đại học Công nghệ TP.HCM (HUTECH), khóa 2022 - 2026.
 - Giải thưởng học thuật tiêu biểu: Giải Nhì Olympic Tin học Sinh viên (Chuyên đề Lập trình & Cơ sở dữ liệu) năm 2023. Tư duy thuật toán vững, xử lý dữ liệu và cấu trúc giải thuật tối ưu.
-- Địa điểm: Bình Tân, TP. Hồ Chí Minh (Sẵn sàng làm việc trực tiếp tại TP.HCM hoặc Remote).
+- Địa điểm: TP. Hồ Chí Minh, Việt Nam (Sẵn sàng làm việc trực tiếp tại TP.HCM hoặc Remote).
 - Email: ${personalInfo.email}
 - Điện thoại: ${personalInfo.phone}
 - GitHub: ${personalInfo.github}

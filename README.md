@@ -112,7 +112,7 @@ npm run start
 ## 📬 Thông Tin Liên Hệ (Contact & Connect)
 
 - **Họ và tên:** TRẦN MAI TRƯỜNG THỊNH
-- **Địa chỉ:** Số 2, đường số 6, KP 70, phường An Lạc, Bình Tân, TP. Hồ Chí Minh
+- **Địa điểm:** TP. Hồ Chí Minh, Việt Nam
 - **Số điện thoại:** (+84) 395 243 133
 - **Email:** [tranmaitruongthinh2607@gmail.com](mailto:tranmaitruongthinh2607@gmail.com)
 - **GitHub:** [https://github.com/tranthinh2607](https://github.com/tranthinh2607)
