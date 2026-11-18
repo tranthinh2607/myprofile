@@ -24,6 +24,155 @@ html {
   color-scheme: dark;
 }
 
+/* ========================================================
+   LIGHT THEME CONFIGURATION
+   ======================================================== */
+html.light,
+html:not(.dark) {
+  color-scheme: light;
+  --background: #f8fafc;
+  --foreground: #09090b;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+
+  /* Invert zinc scale for crisp, high-contrast light mode */
+  --color-zinc-950: #ffffff;
+  --color-zinc-900: #f1f5f9;
+  --color-zinc-850: #e2e8f0;
+  --color-zinc-800: #e2e8f0;
+  --color-zinc-750: #cbd5e1;
+  --color-zinc-700: #cbd5e1;
+  --color-zinc-600: #94a3b8;
+  --color-zinc-500: #64748b;
+  --color-zinc-400: #475569;
+  --color-zinc-300: #334155;
+  --color-zinc-200: #1e293b;
+  --color-zinc-100: #0f172a;
+  --color-zinc-50: #020617;
+}
+
+/* Smooth Theme Switching Transition */
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.15s ease !important;
+  transition-delay: 0s !important;
+}
+
+/* Fallback for hardcoded dark background classes in Light Mode */
+html.light [class*="bg-[#09090b]"],
+html:not(.dark) [class*="bg-[#09090b]"] {
+  background-color: var(--background) !important;
+}
+
+html.light [class*="text-[#f4f4f5]"],
+html:not(.dark) [class*="text-[#f4f4f5]"] {
+  color: var(--foreground) !important;
+}
+
+/* Light Mode Glassmorphism & Panel Styling */
+html.light .glass-panel,
+html:not(.dark) .glass-panel {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+}
+
+html.light .glass-panel-hover:hover,
+html:not(.dark) .glass-panel-hover:hover {
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 0 12px 30px -10px rgba(16, 185, 129, 0.2);
+}
+
+/* Light Mode Gradients */
+html.light .gradient-text-emerald,
+html:not(.dark) .gradient-text-emerald {
+  background: linear-gradient(135deg, #09090b 35%, #059669 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+html.light .gradient-text-cyan,
+html:not(.dark) .gradient-text-cyan {
+  background: linear-gradient(135deg, #0284c7 0%, #09090b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+html.light .bg-grid-pattern,
+html:not(.dark) .bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+}
+
+/* Light Mode Scrollbars */
+html.light ::-webkit-scrollbar-track,
+html:not(.dark) ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+html.light ::-webkit-scrollbar-thumb,
+html:not(.dark) ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border: 2px solid #f1f5f9;
+}
+
+html.light ::-webkit-scrollbar-thumb:hover,
+html:not(.dark) ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Light Mode Badges with Emerald Backgrounds */
+html.light .bg-emerald-950\/40,
+html.light .bg-emerald-950\/60,
+html.light .bg-emerald-950\/80,
+html.light .bg-emerald-950\/90,
+html:not(.dark) .bg-emerald-950\/40,
+html:not(.dark) .bg-emerald-950\/60,
+html:not(.dark) .bg-emerald-950\/80,
+html:not(.dark) .bg-emerald-950\/90 {
+  background-color: #ecfdf5 !important;
+  color: #047857 !important;
+  border-color: #a7f3d0 !important;
+}
+
+/* Light Mode Article Markdown */
+html.light .markdown-body,
+html:not(.dark) .markdown-body {
+  color: #334155 !important;
+}
+
+html.light .markdown-body h1,
+html.light .markdown-body h2,
+html.light .markdown-body h3,
+html.light .markdown-body h4,
+html:not(.dark) .markdown-body h1,
+html:not(.dark) .markdown-body h2,
+html:not(.dark) .markdown-body h3,
+html:not(.dark) .markdown-body h4 {
+  color: #0f172a !important;
+}
+
+html.light .markdown-body strong,
+html:not(.dark) .markdown-body strong {
+  color: #0f172a !important;
+}
+
+html.light .markdown-body blockquote,
+html:not(.dark) .markdown-body blockquote {
+  background: #f0fdf4 !important;
+  color: #166534 !important;
+  border-left-color: #10b981 !important;
+}
+
+html.light .markdown-body code:not(pre code),
+html:not(.dark) .markdown-body code:not(pre code) {
+  background-color: #f1f5f9 !important;
+  color: #059669 !important;
+}
+
 body {
   background-color: var(--background);
   color: var(--foreground);

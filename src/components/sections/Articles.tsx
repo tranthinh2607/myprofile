@@ -70,7 +70,7 @@ export function Articles({ initialPosts = [] }: ArticlesProps) {
   }, [initialPosts]);
 
   return (
-    <section id="blog" className="py-24 bg-[#09090b] border-t border-zinc-900/90 relative">
+    <section id="blog" className="py-24 bg-background border-t border-zinc-900/90 relative">
       {/* Background glow effects */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
 

@@ -21,11 +21,22 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const [isDark, setIsDark] = useState<boolean>(true);
+  const [mounted, setMounted] = useState<boolean>(false);
 
   useEffect(() => {
-    // Initialize dark/light state
+    setMounted(true);
+    // Đồng bộ trạng thái sáng/tối từ localStorage hoặc class trên thẻ html
+    const savedTheme = localStorage.getItem("theme");
     const isDarkMode = document.documentElement.classList.contains("dark");
-    setIsDark(isDarkMode);
+    if (savedTheme === "light" || (!savedTheme && !isDarkMode)) {
+      setIsDark(false);
+      document.documentElement.classList.remove("dark");
+      document.documentElement.classList.add("light");
+    } else {
+      setIsDark(true);
+      document.documentElement.classList.add("dark");
+      document.documentElement.classList.remove("light");
+    }
 
     if (!isHomePage) {
       if (pathname.startsWith("/blog")) {
@@ -61,13 +72,22 @@ export function Header() {
   const toggleTheme = () => {
     const nextDark = !isDark;
     setIsDark(nextDark);
+
+    // Kích hoạt transition chuyển màu mượt mà
+    document.documentElement.classList.add("theme-transition");
+    window.setTimeout(() => {
+      document.documentElement.classList.remove("theme-transition");
+    }, 300);
+
     if (nextDark) {
       document.documentElement.classList.add("dark");
+      document.documentElement.classList.remove("light");
       try {
         localStorage.setItem("theme", "dark");
       } catch {}
     } else {
       document.documentElement.classList.remove("dark");
+      document.documentElement.classList.add("light");
       try {
         localStorage.setItem("theme", "light");
       } catch {}
@@ -127,12 +147,25 @@ export function Header() {
         <div className="hidden sm:flex items-center gap-2.5">
           {/* Dark / Light Theme Toggle */}
           <button
+            type="button"
             onClick={toggleTheme}
             aria-label={isDark ? "Chuyển sang chế độ sáng" : "Chuyển sang chế độ tối"}
-            className="p-2 rounded-lg border border-zinc-800 bg-zinc-900/80 hover:bg-zinc-800 text-zinc-300 hover:text-emerald-400 transition-colors cursor-pointer"
-            title={isDark ? "Chế độ tối (Bấm để chuyển sáng)" : "Chế độ sáng (Bấm để chuyển tối)"}
+            className="p-2 rounded-xl border border-zinc-800 bg-zinc-900/80 hover:bg-zinc-800 text-zinc-300 hover:text-emerald-400 transition-all duration-200 shadow-sm cursor-pointer group"
+            title={
+              isDark
+                ? "Đang ở chế độ tối — Bấm để chuyển sang chế độ sáng"
+                : "Đang ở chế độ sáng — Bấm để chuyển sang chế độ tối"
+            }
           >
-            {isDark ? <Sun className="w-3.5 h-3.5 text-amber-400" /> : <Moon className="w-3.5 h-3.5 text-cyan-400" />}
+            {mounted ? (
+              isDark ? (
+                <Sun className="w-4 h-4 text-amber-400 transition-transform duration-300 group-hover:rotate-45" />
+              ) : (
+                <Moon className="w-4 h-4 text-emerald-500 transition-transform duration-300 group-hover:-rotate-12" />
+              )
+            ) : (
+              <Sun className="w-4 h-4 text-amber-400" />
+            )}
           </button>
 
           {/* Download CV */}
@@ -198,21 +231,22 @@ export function Header() {
             </Link>
           </nav>
           <div className="pt-3 flex flex-col gap-2 border-t border-zinc-800/80">
-            <div className="flex items-center justify-between px-2 py-1">
-              <span className="text-xs font-mono text-zinc-400">Giao diện (Dark / Light):</span>
+            <div className="flex items-center justify-between px-3 py-2.5 rounded-xl bg-zinc-900/70 border border-zinc-800">
+              <span className="text-xs font-mono text-zinc-400">Giao diện (Sáng / Tối):</span>
               <button
+                type="button"
                 onClick={toggleTheme}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-zinc-800 bg-zinc-900 text-zinc-200 text-xs font-mono cursor-pointer"
+                className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-zinc-700 bg-zinc-950 text-xs font-mono font-medium text-zinc-200 hover:text-white transition-all cursor-pointer shadow-sm"
               >
                 {isDark ? (
                   <>
                     <Sun className="w-3.5 h-3.5 text-amber-400" />
-                    <span>Dark Mode</span>
+                    <span>Bật Chế Độ Sáng</span>
                   </>
                 ) : (
                   <>
-                    <Moon className="w-3.5 h-3.5 text-cyan-400" />
-                    <span>Light Mode</span>
+                    <Moon className="w-3.5 h-3.5 text-emerald-500" />
+                    <span>Bật Chế Độ Tối</span>
                   </>
                 )}
               </button>

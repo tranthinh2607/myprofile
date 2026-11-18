@@ -137,7 +137,7 @@ export default async function BlogPostPage({ params }: PageProps) {
   const date = post.published_at ? formatDate(post.published_at) : formatDate(post.created_at);
 
   return (
-    <div className="min-h-screen bg-[#09090b] text-zinc-100">
+    <div className="min-h-screen bg-background text-foreground">
       {/* Article Header */}
       <div className="border-b border-zinc-800/60 bg-zinc-950/50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
