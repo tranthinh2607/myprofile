@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ToastProvider } from "@/components/layout/Toast";
 import { AIChatWidget } from "@/components/ai/AIChatWidget";
+import { SmoothScroll } from "@/components/layout/SmoothScroll";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -73,6 +74,7 @@ export default function RootLayout({
     <html
       lang="vi"
       className={`${geistSans.variable} ${geistMono.variable} scroll-smooth dark`}
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
       <head>
@@ -97,6 +99,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen bg-background text-foreground antialiased selection:bg-emerald-500 selection:text-black">
         <ToastProvider>
+          <SmoothScroll />
           {children}
           <AIChatWidget />
         </ToastProvider>

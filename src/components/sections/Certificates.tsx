@@ -165,7 +165,8 @@ export function Certificates() {
           aria-labelledby="cert-modal-title"
         >
           <div
-            className="relative w-full max-w-3xl max-h-[92vh] overflow-y-auto bg-zinc-950 border border-zinc-800 rounded-2xl p-5 sm:p-7 shadow-2xl space-y-5 animate-in zoom-in-95 duration-200"
+            data-lenis-prevent
+            className="relative w-full max-w-3xl max-h-[92vh] overflow-y-auto bg-zinc-950 border border-zinc-800 rounded-2xl p-5 sm:p-7 shadow-2xl space-y-5 animate-in zoom-in-95 duration-200 overscroll-contain"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close button */}

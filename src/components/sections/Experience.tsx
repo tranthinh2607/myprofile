@@ -81,7 +81,10 @@ export function Experience() {
           </div>
 
           {/* Right Column: Detailed Experience View */}
-          <div className="lg:col-span-8 rounded-2xl bg-zinc-900/40 border border-zinc-800 p-6 sm:p-8 space-y-6">
+          <div
+            key={activeExp.id}
+            className="animate-fade-in-slide lg:col-span-8 rounded-2xl bg-zinc-900/40 border border-zinc-800 p-6 sm:p-8 space-y-6"
+          >
             {/* Header info */}
             <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 pb-6 border-b border-zinc-800">
               <div className="space-y-1.5">

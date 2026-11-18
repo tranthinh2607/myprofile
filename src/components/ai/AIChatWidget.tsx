@@ -252,7 +252,10 @@ Tôi được huấn luyện trên toàn bộ hồ sơ năng lực, bằng cấp
           </div>
 
           {/* Messages Scroll Area */}
-          <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4 text-xs font-sans">
+          <div
+            data-lenis-prevent
+            className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4 text-xs font-sans overscroll-contain"
+          >
             {messages.map((m) => (
               <div
                 key={m.id}
