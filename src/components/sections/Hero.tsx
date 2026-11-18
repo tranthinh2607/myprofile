@@ -73,11 +73,15 @@ export function Hero() {
                 <span className="text-xl sm:text-2xl font-mono font-medium text-emerald-400">
                   {personalInfo.title}
                 </span>
-                <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-zinc-700" />
-                <span className="text-sm font-mono text-zinc-400 flex items-center gap-1">
-                  <MapPin className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
-                  {personalInfo.location}
-                </span>
+                {personalInfo.location && (
+                  <>
+                    <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-zinc-700" />
+                    <span className="text-sm font-mono text-zinc-400 flex items-center gap-1">
+                      <MapPin className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
+                      {personalInfo.location}
+                    </span>
+                  </>
+                )}
               </div>
             </div>
 

@@ -3,7 +3,7 @@ export interface PersonalInfo {
   title: string;
   shortBio: string;
   about: string;
-  location: string;
+  location?: string;
   email: string;
   phone: string;
   github: string;

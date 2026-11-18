@@ -17,7 +17,6 @@ export const personalInfo: PersonalInfo = {
     "Kỹ sư phần mềm xuất thân từ nền tảng giải thuật và cơ sở dữ liệu vững chắc. Tôi tập trung vào việc viết mã nguồn sạch, tối ưu hóa hiệu năng ứng dụng và tích hợp các giải pháp trí tuệ nhân tạo vào giải quyết bài toán thực tế. Với tư duy kỹ thuật toàn diện từ mạng máy tính, hệ thống đến phần mềm, tôi hướng đến việc xây dựng các sản phẩm công nghệ có trải nghiệm mượt mà, vận hành ổn định và dễ dàng mở rộng.",
   about:
     "Với định hướng chuyên sâu về kỹ thuật phần mềm, tôi đặt trọng tâm vào chất lượng mã nguồn, tư duy giải thuật tối ưu và tính ổn định dài hạn của hệ thống. Từ nền tảng đạt giải thưởng về lập trình giải thuật và xử lý cơ sở dữ liệu, tôi làm chủ quá trình phát triển sản phẩm từ thiết kế logic giao diện, xử lý dữ liệu phức tạp đến tích hợp các mô hình trí tuệ nhân tạo thông minh. Sự am hiểu sâu sắc về kiến trúc mạng và máy tính giúp tôi luôn chủ động trong việc gỡ lỗi, kiểm soát độ trễ và tạo ra những sản phẩm phần mềm chuẩn mực.",
-  location: "Số 2, đường số 6, KP 70, phường An Lạc, Bình Tân, TP.HCM",
   email: "tranmaitruongthinh2607@gmail.com",
   phone: "0395243133",
   github: "https://github.com/tranthinh2607",

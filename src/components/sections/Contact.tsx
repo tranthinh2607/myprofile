@@ -183,7 +183,7 @@ export function Contact() {
                     <MapPin className="w-3.5 h-3.5 text-emerald-400" />
                     <span>Địa điểm</span>
                   </div>
-                  <div className="text-zinc-200 font-semibold">{personalInfo.location}</div>
+                  <div className="text-zinc-200 font-semibold">{personalInfo.location || "TP. Hồ Chí Minh, Việt Nam"}</div>
                 </div>
 
                 <div className="p-3 rounded-xl bg-zinc-950/80 border border-zinc-800 text-xs font-mono space-y-1">
