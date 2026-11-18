@@ -6,6 +6,7 @@ import { createPublicClient } from "@/lib/supabase/server";
 import { CommentSection } from "@/components/blog/CommentSection";
 import { MarkdownRenderer } from "@/components/blog/MarkdownRenderer";
 import { ShareButtons } from "@/components/blog/ShareButtons";
+import { AISummarizer } from "@/components/blog/AISummarizer";
 import type { Post } from "@/types/supabase";
 import {
   ArrowLeft,
@@ -221,6 +222,9 @@ export default async function BlogPostPage({ params }: PageProps) {
         <div className="flex flex-col lg:flex-row gap-10">
           {/* Main Content */}
           <article className="flex-1 min-w-0">
+            {/* AI Summary Box */}
+            <AISummarizer title={post.title} content={post.content} />
+
             <Suspense fallback={<div className="animate-pulse space-y-4">
               {Array.from({ length: 8 }).map((_, i) => (
                 <div key={i} className={`h-4 bg-zinc-800 rounded ${i % 3 === 0 ? "w-3/4" : "w-full"}`} />

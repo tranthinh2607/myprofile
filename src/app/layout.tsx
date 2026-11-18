@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ToastProvider } from "@/components/layout/Toast";
+import { AIChatWidget } from "@/components/ai/AIChatWidget";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -95,7 +96,10 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-background text-foreground antialiased selection:bg-emerald-500 selection:text-black">
-        <ToastProvider>{children}</ToastProvider>
+        <ToastProvider>
+          {children}
+          <AIChatWidget />
+        </ToastProvider>
       </body>
     </html>
   );

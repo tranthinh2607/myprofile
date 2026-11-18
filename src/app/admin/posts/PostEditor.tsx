@@ -14,6 +14,9 @@ import {
   Plus,
   Loader2,
   ImageIcon,
+  Sparkles,
+  FileText,
+  Tag,
 } from "lucide-react";
 import { createPost, updatePost, uploadCoverImage } from "./actions";
 import { generateSlug } from "@/lib/blog-utils";
@@ -47,6 +50,95 @@ export function PostEditor({ mode, initialPost, token, onSave }: PostEditorProps
   const [error, setError] = useState("");
   const [slugEdited, setSlugEdited] = useState(mode === "edit");
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Gemini AI Assistant States & Handlers
+  const [aiLoading, setAiLoading] = useState<string | null>(null);
+  const [aiSuccessMessage, setAiSuccessMessage] = useState<string | null>(null);
+
+  const handleAiGenerateOutline = async () => {
+    if (!title.trim()) {
+      alert("Vui lòng nhập Tiêu đề bài viết trước để Gemini AI gợi ý dàn ý phù hợp.");
+      return;
+    }
+    setAiLoading("outline");
+    setAiSuccessMessage(null);
+    try {
+      const res = await fetch("/api/ai/writing-assist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "outline", text: title, token }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) throw new Error(data.error);
+      setContent((prev) => (prev ? prev + "\n\n" + data.result : data.result));
+      setAiSuccessMessage("Đã thêm dàn ý bài viết bằng Gemini AI!");
+    } catch (err) {
+      alert(err instanceof Error ? err.message : "Lỗi khi gọi AI trợ lý.");
+    } finally {
+      setAiLoading(null);
+    }
+  };
+
+  const handleAiGenerateMeta = async () => {
+    if (!content.trim() && !title.trim()) {
+      alert("Vui lòng nhập tiêu đề hoặc nội dung bài viết để AI trích xuất tóm tắt và tags.");
+      return;
+    }
+    setAiLoading("meta");
+    setAiSuccessMessage(null);
+    try {
+      const res = await fetch("/api/ai/writing-assist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "meta",
+          text: content || title,
+          extraContext: title,
+          token,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) throw new Error(data.error);
+      if (data.meta?.excerpt) {
+        setExcerpt(data.meta.excerpt);
+      }
+      if (Array.isArray(data.meta?.tags)) {
+        setTags((prev) => Array.from(new Set([...prev, ...data.meta.tags])));
+      }
+      setAiSuccessMessage("Đã tự động điền Tóm tắt (Excerpt) và Tags chuẩn SEO!");
+    } catch (err) {
+      alert(err instanceof Error ? err.message : "Lỗi khi gọi AI trợ lý.");
+    } finally {
+      setAiLoading(null);
+    }
+  };
+
+  const handleAiPolish = async () => {
+    const textToPolish = excerpt.trim() || content.slice(0, 800).trim();
+    if (!textToPolish) {
+      alert("Vui lòng nhập đoạn tóm tắt hoặc nội dung để AI trau chuốt.");
+      return;
+    }
+    setAiLoading("polish");
+    setAiSuccessMessage(null);
+    try {
+      const res = await fetch("/api/ai/writing-assist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "polish", text: textToPolish, token }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) throw new Error(data.error);
+      if (excerpt.trim()) {
+        setExcerpt(data.result);
+      }
+      setAiSuccessMessage("Đã trau chuốt văn phong thành công!");
+    } catch (err) {
+      alert(err instanceof Error ? err.message : "Lỗi khi gọi AI trợ lý.");
+    } finally {
+      setAiLoading(null);
+    }
+  };
 
   // Auto-generate slug from title
   const handleTitleChange = (val: string) => {
@@ -232,6 +324,76 @@ export function PostEditor({ mode, initialPost, token, onSave }: PostEditorProps
               />
             </div>
           </div>
+
+          {/* Gemini 2.5 AI Assistant Toolbar */}
+          <div className="p-3.5 rounded-2xl bg-gradient-to-r from-emerald-500/10 via-zinc-900/60 to-cyan-500/10 border border-emerald-500/30 flex flex-wrap items-center justify-between gap-3 shadow-lg">
+            <div className="flex items-center gap-2">
+              <div className="w-7 h-7 rounded-lg bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400">
+                <Sparkles className="w-4 h-4" />
+              </div>
+              <div>
+                <span className="text-xs font-mono font-semibold text-zinc-200 block">
+                  Gemini 2.5 AI Co-pilot
+                </span>
+                <span className="text-[10px] text-zinc-400 font-mono">
+                  Hỗ trợ tạo dàn ý, tóm tắt và tags tự động
+                </span>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-2">
+              <button
+                type="button"
+                onClick={handleAiGenerateOutline}
+                disabled={Boolean(aiLoading)}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 hover:border-emerald-500/50 text-xs font-mono text-zinc-300 hover:text-emerald-400 transition-colors disabled:opacity-50 cursor-pointer"
+                title="AI tự tạo khung dàn ý H2, H3 theo tiêu đề bài viết"
+              >
+                {aiLoading === "outline" ? (
+                  <Loader2 className="w-3.5 h-3.5 animate-spin text-emerald-400" />
+                ) : (
+                  <FileText className="w-3.5 h-3.5 text-emerald-400" />
+                )}
+                <span>Gợi ý dàn ý (Outline)</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={handleAiGenerateMeta}
+                disabled={Boolean(aiLoading)}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 hover:border-emerald-500/50 text-xs font-mono text-zinc-300 hover:text-emerald-400 transition-colors disabled:opacity-50 cursor-pointer"
+                title="AI đọc bài viết và tự động điền Excerpt + Tags chuẩn SEO"
+              >
+                {aiLoading === "meta" ? (
+                  <Loader2 className="w-3.5 h-3.5 animate-spin text-emerald-400" />
+                ) : (
+                  <Tag className="w-3.5 h-3.5 text-cyan-400" />
+                )}
+                <span>Tự tạo Tóm tắt &amp; Tags</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={handleAiPolish}
+                disabled={Boolean(aiLoading)}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 hover:border-emerald-500/50 text-xs font-mono text-zinc-300 hover:text-emerald-400 transition-colors disabled:opacity-50 cursor-pointer"
+                title="Làm mượt văn phong của đoạn tóm tắt"
+              >
+                {aiLoading === "polish" ? (
+                  <Loader2 className="w-3.5 h-3.5 animate-spin text-emerald-400" />
+                ) : (
+                  <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                )}
+                <span>Trau chuốt tóm tắt</span>
+              </button>
+            </div>
+          </div>
+
+          {aiSuccessMessage && (
+            <p className="text-xs text-emerald-400 font-mono bg-emerald-950/30 border border-emerald-500/30 px-3 py-2 rounded-xl">
+              ✓ {aiSuccessMessage}
+            </p>
+          )}
 
           {/* Excerpt */}
           <div className="space-y-2">
